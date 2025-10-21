@@ -8,9 +8,18 @@ const Container = styled.div`
   border-radius: 12px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   padding: 40px;
-  width: 100%;
+  width: 90%;
   max-width: 600px;
-  margin: 60px auto;
+  margin: 40px auto;
+
+  @media (max-width: 768px) {
+    padding: 30px 20px;
+    margin: 20px auto;
+  }
+
+  @media (max-width: 480px) {
+    padding: 20px 15px;
+  }
 `;
 
 const Title = styled.h1`
@@ -19,6 +28,10 @@ const Title = styled.h1`
   font-size: 32px;
   font-weight: 500;
   margin-bottom: 30px;
+
+  @media (max-width: 480px) {
+    font-size: 24px;
+  }
 `;
 
 const UploadArea = styled.div`
@@ -34,6 +47,14 @@ const UploadArea = styled.div`
 
   &:hover {
     border-color: #1e88e5;
+  }
+
+  @media (max-width: 768px) {
+    padding: 50px 30px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 40px 20px;
   }
 `;
 
@@ -64,6 +85,20 @@ const UploadIcon = styled.div`
     transform: translate(-50%, -50%);
     z-index: 1;
   }
+
+  @media (max-width: 480px) {
+    width: 50px;
+    height: 50px;
+
+    &::before {
+      width: 40px;
+      height: 50px;
+    }
+
+    &::after {
+      font-size: 26px;
+    }
+  }
 `;
 
 const UploadText = styled.div`
@@ -82,6 +117,10 @@ const UploadText = styled.div`
       display: none;
     }
   }
+
+  @media (max-width: 480px) {
+    font-size: 14px;
+  }
 `;
 
 const FileItem = styled.div`
@@ -92,6 +131,7 @@ const FileItem = styled.div`
   border-radius: 8px;
   margin-bottom: 20px;
   background-color: #fafafa;
+  flex-wrap: wrap;
 `;
 
 const FileIcon = styled.div`
@@ -108,10 +148,18 @@ const FileIcon = styled.div`
   font-weight: 600;
   margin-right: 15px;
   flex-shrink: 0;
+
+  @media (max-width: 480px) {
+    width: 35px;
+    height: 45px;
+    font-size: 10px;
+    margin-bottom: 10px;
+  }
 `;
 
 const FileDetails = styled.div`
   flex-grow: 1;
+  min-width: 0;
 `;
 
 const FileName = styled.div`
@@ -119,23 +167,36 @@ const FileName = styled.div`
   font-size: 14px;
   margin-bottom: 8px;
   font-weight: 500;
+
+  @media (max-width: 480px) {
+    font-size: 13px;
+  }
 `;
 
 const FileInfo = styled.div`
   display: flex;
   align-items: center;
   gap: 10px;
+  flex-wrap: wrap;
 `;
 
 const FileSize = styled.span`
   color: #666;
   font-size: 13px;
+
+  @media (max-width: 480px) {
+    font-size: 12px;
+  }
 `;
 
 const UploadStatus = styled.span`
   color: #1e88e5;
   font-size: 13px;
   font-weight: 500;
+
+  @media (max-width: 480px) {
+    font-size: 12px;
+  }
 `;
 
 const ProgressBar = styled.div`
@@ -185,7 +246,6 @@ const FileUpload = () => {
         }
       );
 
-      // Download the PDF
       const url = window.URL.createObjectURL(new Blob([response.data]));
       const a = document.createElement("a");
       a.href = url;
@@ -227,7 +287,7 @@ const FileUpload = () => {
 
   return (
     <Container>
-      <Title>File Upload Useing Python</Title>
+      <Title>File Upload Using Python</Title>
 
       <UploadArea
         isDragOver={isDragOver}
